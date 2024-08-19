@@ -1,21 +1,26 @@
-import { axiosInterceptor } from "./axiosInterceptor"
+import axios from "axios";
 
-export const getAllUser = (callback: any) => {
-    axiosInterceptor.get('/user/list')
+export const url = import.meta.env.VITE_BASE_API
+export const cloudName = import.meta.env.VITE_CLOUDINARY_NAME
+export const cloudApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY
+export const cloudApiSecret = import.meta.env.VITE_CLOUDINARY_API_SECRET
+
+export const loginService = async (formLogin: any, callback: any) => {
+    await axios.post(`${url}/user/login`, formLogin)
         .then((res) => {
-            callback(res.data);
+            callback(true, res.data);
+        }).catch((err) => {
+            callback(false, err)
         })
-        .catch((error) => {
-            console.error("Error fetching all unit work:", error);
-        });
-
 }
 
-export const deleteUser = async (id: any, callback: any) => {
-    await axiosInterceptor.delete(`/user/delete/${id}`)
-        .then((result) => {
-            callback(true, result.data)
-        }).catch((err: any) => {
-            console.log(false, err);
+export const register = async (formRegister: any, callback: any) => {
+    await axios.post(`${url}/user/register`, formRegister)
+        .then((res) => {
+            callback(true, res.data);
+            console.log(res.data);
+
+        }).catch((err) => {
+            callback(false, err);
         });
-}
+};

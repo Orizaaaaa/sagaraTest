@@ -16,7 +16,7 @@ function InputForm({ htmlFor, title, type, onChange, value, placeholder, classNa
                 {title}
             </label>
             <input
-                className="h-10 p-4 rounded-md outline-none w-full"
+                className="h-10 p-4 rounded-md outline-none w-full bg-slate-200"
                 type={type}
                 name={htmlFor}
                 onChange={onChange}

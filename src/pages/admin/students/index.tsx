@@ -8,7 +8,7 @@ import { FaPen, FaRegTrashCan } from "react-icons/fa6";
 import ModalDefault from "../../../components/fragments/modal/Modal";
 import InputForm from "../../../components/elemets/input/InputForm";
 import ButtonPrimary from "../../../components/elemets/buttonPrimary";
-import { getUsers, updateUser } from "../../../service/user";
+import { createUser, getUsers, updateUser } from "../../../service/user";
 
 
 
@@ -27,19 +27,23 @@ const Students = () => {
         instance: '',
 
     })
-    const { onOpen, onClose } = useDisclosure();
+
     const [users, setUsers] = useState([])
     const [idUser, setIdUser] = useState('')
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenUpdate, onOpen: onOpenUpdate, onClose: onCloseUpdate } = useDisclosure();
     const { onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
+
     const [selectedFilter, setSelectedFilter] = useState<string>("name");
     const [page, setPage] = useState(1);
     const [searchData, setSearchData] = useState("");
     const rowsPerPage = 10;
 
     useEffect(() => {
-        getUsers((data: any) => setUsers(data))
+        getUsers((data: any) => setUsers(data.reverse()));
     }, []);
+
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchData(e.target.value);
@@ -76,6 +80,27 @@ const Students = () => {
         }
 
     }
+
+    const handleCreateUser = async (e: any) => {
+        e.preventDefault()
+
+        await createUser(form, (res: any) => {
+            if (res) {
+                console.log(res);
+                setForm({
+                    name: '',
+                    email: '',
+                    phone: 0,
+                    instance: '',
+                })
+                getUsers((data: any) => setUsers(data.reverse()));
+                console.log(res);
+                onClose();
+
+            }
+        })
+
+    }
     const handleUpdate = async (e: any) => {
         e.preventDefault()
         await updateUser(idUser, form, (result: any) => {
@@ -86,7 +111,7 @@ const Students = () => {
                     phone: 0,
                     instance: '',
                 })
-                getUsers((data: any) => setUsers(data))
+                getUsers((data: any) => setUsers(data.reverse()));
                 onCloseUpdate();
             }
         })
@@ -119,7 +144,7 @@ const Students = () => {
                     </div>
 
                     <div className="flex">
-                        <button className="flex items-center gap-2 bg-primary py-2 px-4 rounded-md">
+                        <button onClick={() => modal('create', 'create')} className="flex items-center gap-2 bg-primary py-2 px-4 rounded-md">
                             <FiPlus size={20} color="white" />
                             <span className="font-medium text-white">Add User</span>
                         </button>
@@ -210,7 +235,25 @@ const Students = () => {
                     </div>
                     <div className="flex gap-4">
                         <InputForm onChange={handleChange} htmlFor="phone" title="No Phone " value={form.phone} type="text" />
-                        <InputForm onChange={handleChange} htmlFor="instance" title="Instance" value={form.email} type="text" />
+                        <InputForm onChange={handleChange} htmlFor="instance" title="Instance" value={form.instance} type="text" />
+                    </div>
+                    <div className="flex justify-end my-3">
+                        <ButtonPrimary type="submit" className="rounded-md"  >Save</ButtonPrimary>
+                    </div>
+
+                </form>
+            </ModalDefault>
+
+            <ModalDefault isOpen={isOpen} onClose={onClose} >
+                <h1 className="text-lg font-semibold mt-3" >Create User</h1>
+                <form onSubmit={handleCreateUser}>
+                    <div className="flex gap-4">
+                        <InputForm onChange={handleChange} htmlFor="name" title="Name" value={form.name} type="text" />
+                        <InputForm onChange={handleChange} htmlFor="email" title="Email" value={form.email} type="text" />
+                    </div>
+                    <div className="flex gap-4">
+                        <InputForm onChange={handleChange} htmlFor="phone" title="No Phone " value={form.phone} type="text" />
+                        <InputForm onChange={handleChange} htmlFor="instance" title="Instance" value={form.instance} type="text" />
                     </div>
                     <div className="flex justify-end my-3">
                         <ButtonPrimary type="submit" className="rounded-md"  >Save</ButtonPrimary>

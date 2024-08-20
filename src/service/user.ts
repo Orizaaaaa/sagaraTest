@@ -12,6 +12,14 @@ export const getUsers = (callback: any) => {
         })
 }
 
+export const createUser = async (form: any, callback: any) => {
+    axios.post(`${url}/user`, form)
+        .then((result) => {
+            callback(result.data)
+        }).catch((err) => {
+            callback(err)
+        });
+}
 
 export const updateUser = async (id: string, form: any, callback: any,) => {
     await axios.put(`${url}/user/${id}`, form)

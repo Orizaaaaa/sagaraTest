@@ -3,6 +3,7 @@ import AboutUs from '../../components/fragments/home/AboutUs'
 import Header from '../../components/fragments/home/Header'
 import Hero from '../../components/fragments/home/Hero'
 import HowSagara from '../../components/fragments/home/HowSagara'
+import OurCertification from '../../components/fragments/home/OurCertification'
 import SagaraProfile from '../../components/fragments/home/SagaraProfile'
 
 
@@ -17,6 +18,7 @@ const Home = () => {
             <AboutUs />
             <SagaraProfile />
             <HowSagara />
+            <OurCertification />
         </>
     )
 }

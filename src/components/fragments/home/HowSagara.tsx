@@ -91,6 +91,9 @@ const HowSagara = () => {
                 </div>
             </div>
 
+            <div className="flex justify-center">
+                <hr className="border-3 rounded-md border-primary mb-5 w-22" />
+            </div>
         </div >
 
     )

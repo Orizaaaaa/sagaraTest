@@ -1,26 +1,24 @@
 import axios from "axios";
 
 export const url = import.meta.env.VITE_BASE_API
-export const cloudName = import.meta.env.VITE_CLOUDINARY_NAME
-export const cloudApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY
-export const cloudApiSecret = import.meta.env.VITE_CLOUDINARY_API_SECRET
 
-export const loginService = async (formLogin: any, callback: any) => {
-    await axios.post(`${url}/user/login`, formLogin)
+export const getUsers = (callback: any) => {
+    axios.get(`${url}/user`)
         .then((res) => {
-            callback(true, res.data);
-        }).catch((err) => {
-            callback(false, err)
+            callback(res.data)
+        })
+        .catch((err) => {
+            console.log(err)
         })
 }
 
-export const register = async (formRegister: any, callback: any) => {
-    await axios.post(`${url}/user/register`, formRegister)
-        .then((res) => {
-            callback(true, res.data);
-            console.log(res.data);
 
-        }).catch((err) => {
-            callback(false, err);
-        });
-};
+export const updateUser = async (id: string, form: any, callback: any,) => {
+    await axios.put(`${url}/user/${id}`, form)
+        .then((res) => {
+            callback(res.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}

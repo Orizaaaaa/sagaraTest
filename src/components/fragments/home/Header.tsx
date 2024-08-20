@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+
 import { useState } from 'react';
-import { logo } from '../../../image';
+import { landongLogo } from '../../../image';
+import ButtonPrimary from '../../elemets/buttonPrimary';
 
 
 const Header = () => {
@@ -16,9 +17,8 @@ const Header = () => {
                 <div className='mx-auto flex w-full flex-wrap items-center justify-between p-4'>
                     <div className='flex items-center'>
                         <div className=''>
-                            <img src={logo} className='mr-3 md:h-10 h-8 w-auto' alt='Logo SerenityLink' />
+                            <img src={landongLogo} className='mr-3 md:h-10 h-8 w-auto' />
                         </div>
-                        <span className='self-center whitespace-nowrap text-lg md:text-2xl font-bold'>Pengaduan<span className='text-primary'>Citatah</span> </span>
                     </div>
                     <button
                         onClick={toggleNavbar}
@@ -33,33 +33,9 @@ const Header = () => {
                         </svg>
                     </button>
                     <div className={`w-full md:block md:w-auto ${isNavbarOpen ? 'block' : 'hidden'} z-10`} id='navbar-default'>
-                        <ul className='mt-4 flex flex-col rounded-lg border border-gray-100 bg-transparent p-4 font-medium  md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0 '>
-                            <li>
-                                <Link to={"#"} className='font-semibold block rounded bg-primary py-2 pl-3 pr-4 text-white  md:bg-transparent md:p-0 md:text-primary ' aria-current='page'>
-                                    Home
-                                </Link>
-                            </li>
-                            <li>
-                                <a href='#alurAduan' className='font-semibold block rounded py-2 pl-3 pr-4 text-gray-950 hover:bg-gray-100 transition duration-300  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-primary '>
-                                    Alur Aduan
-                                </a>
-                            </li>
-                            <li>
-                                <a href='#kategori' className='font-semibold block rounded py-2 pl-3 pr-4 text-gray-950 hover:bg-gray-100 transition duration-300  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-primary '>
-                                    Kategori
-                                </a>
-                            </li>
-                            <li>
-                                <a href='#laporan' className='font-semibold block rounded py-2 pl-3 pr-4 text-gray-950 hover:bg-gray-100 transition duration-300  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-primary '>
-                                    Laporan
-                                </a>
-                            </li>
-                            <li>
-                                {/* <Link to={auth.user ? '/dashboard' : '/login'} className='font-semibold block rounded py-2 pl-3 pr-4 text-gray-950 hover:bg-gray-100 transition duration-300  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-primary underline '>
-                                    {auth.user ? 'Dashboard' : 'Login'}
-                                </Link> */}
-                            </li>
-                        </ul>
+                        <div className='mt-4 flex  rounded-lg border border-gray-100 bg-transparent p-4 font-medium  md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0 '>
+                            <ButtonPrimary className='rounded-md' >Sign In</ButtonPrimary>
+                        </div>
                     </div>
                 </div>
             </nav>

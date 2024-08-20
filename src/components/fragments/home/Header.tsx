@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
 import { landongLogo } from '../../../image';
-import ButtonPrimary from '../../elemets/buttonPrimary';
+import { NavLink, } from 'react-router-dom';
+
 
 
 const Header = () => {
@@ -11,6 +12,7 @@ const Header = () => {
     const toggleNavbar = () => {
         setIsNavbarOpen(!isNavbarOpen);
     };
+
     return (
         <header>
             <nav className='bg-transparent '>
@@ -34,7 +36,7 @@ const Header = () => {
                     </button>
                     <div className={`w-full md:block md:w-auto ${isNavbarOpen ? 'block' : 'hidden'} z-10`} id='navbar-default'>
                         <div className='mt-4 flex  rounded-lg border border-gray-100 bg-transparent p-4 font-medium  md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0 '>
-                            <ButtonPrimary className='rounded-md' >Sign In</ButtonPrimary>
+                            <NavLink className={'px-4 py-2 text-white bg-primary rounded-md'} to={'/dashboard'} > Sign In</NavLink>
                         </div>
                     </div>
                 </div>

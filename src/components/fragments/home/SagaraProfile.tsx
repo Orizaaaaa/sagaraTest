@@ -9,14 +9,14 @@ const SagaraProfile = () => {
             text: "Our certifications are globally recognized, enhancing your credibility, and opening doors to new opportunities."
         },
         {
-            title: "Global Credibility Boost",
+            title: "Empowering Careers",
             image: people,
-            text: "Our certifications are globally recognized, enhancing your credibility, and opening doors to new opportunities."
+            text: "Equipped to advance your career, secure promotions, and pursue new job opportunities in the ever-evolving tech industry."
         },
         {
-            title: "Global Credibility Boost",
+            title: "Expertise Validation",
             image: star,
-            text: "Our certifications are globally recognized, enhancing your credibility, and opening doors to new opportunities."
+            text: "Showcase your expertise and validate your skills with globally recognized certifications that employers trust."
         },
     ]
 

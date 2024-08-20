@@ -8,7 +8,7 @@ import { FaPen, FaRegTrashCan } from "react-icons/fa6";
 import ModalDefault from "../../../components/fragments/modal/Modal";
 import InputForm from "../../../components/elemets/input/InputForm";
 import ButtonPrimary from "../../../components/elemets/buttonPrimary";
-import { createUser, getUsers, updateUser } from "../../../service/user";
+import { createUser, deleteUSer, getUsers, updateUser } from "../../../service/user";
 
 
 
@@ -33,7 +33,7 @@ const Students = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenUpdate, onOpen: onOpenUpdate, onClose: onCloseUpdate } = useDisclosure();
-    const { onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
+    const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
 
     const [selectedFilter, setSelectedFilter] = useState<string>("name");
     const [page, setPage] = useState(1);
@@ -76,6 +76,7 @@ const Students = () => {
             setIdUser(item.id)
             onOpenUpdate();
         } else {
+            setIdUser(item.id)
             onOpenDelete();
         }
 
@@ -118,6 +119,14 @@ const Students = () => {
 
     };
 
+    const handleDelete = async () => {
+        await deleteUSer(idUser, (result: any) => {
+            if (result) {
+                getUsers((data: any) => setUsers(data.reverse()));
+                onCloseDelete();
+            }
+        })
+    }
     console.log(users);
 
 
@@ -213,8 +222,9 @@ const Students = () => {
                                             <button onClick={() => modal(item, 'update')}>
                                                 <FaPen size={15} />
                                             </button>
-                                            <FaRegTrashCan size={15} color="red" />
-
+                                            <button onClick={() => modal(item, 'delete')}>
+                                                <FaRegTrashCan size={15} color="red" />
+                                            </button>
                                         </div>
                                     ) : (
                                         item[columnKey]
@@ -245,7 +255,7 @@ const Students = () => {
             </ModalDefault>
 
             <ModalDefault isOpen={isOpen} onClose={onClose} >
-                <h1 className="text-lg font-semibold mt-3" >Create User</h1>
+                <h1 className="text-lg font-semibold mt-3" >Add New Students</h1>
                 <form onSubmit={handleCreateUser}>
                     <div className="flex gap-4">
                         <InputForm onChange={handleChange} htmlFor="name" title="Name" value={form.name} type="text" />
@@ -260,6 +270,12 @@ const Students = () => {
                     </div>
 
                 </form>
+            </ModalDefault>
+
+            <ModalDefault isOpen={isOpenDelete} onClose={onCloseDelete} >
+                <h1 className="text-lg font-semibold mt-3 " > Are you sure delete this data ? </h1>
+                <p className="text-slate-500 text-small mb-3" >deleted data cannot be restored</p>
+                <ButtonPrimary onClick={handleDelete} className="rounded-md"  >Delete</ButtonPrimary>
             </ModalDefault>
         </DefaultLayout>
     );

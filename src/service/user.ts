@@ -30,3 +30,12 @@ export const updateUser = async (id: string, form: any, callback: any,) => {
             console.log(err)
         })
 }
+
+export const deleteUSer = async (id: string, callback: any,) => {
+    await axios.delete(`${url}/user/${id}`)
+        .then((result) => {
+            callback(result.data)
+        }).catch((err) => {
+            callback(err)
+        });
+}

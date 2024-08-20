@@ -44,7 +44,7 @@ const OurCertification = () => {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 my-4 gap-2 mx-2 lg:mx-0">
                 {dataTitle.map((item, index) => (
-                    <div className={`flex justify-center items-center ${index === 0 ? 'bg-primary text-white font-semibold' : ''}`} key={index}>
+                    <div className={`flex justify-center items-center ${index === 0 ? 'bg-primary text-white font-semibold' : ''}`} key={index} >
                         <h1 className=" w-full p-1 md:p-4 border-1 text-center text-small md:text-base rounded-sm" >{item.title}</h1>
                     </div>
                 ))}
@@ -52,14 +52,14 @@ const OurCertification = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2   ">
 
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center " data-aos="fade-right">
                     <img className="w-auto h-[500px]" src={code} alt="" />
                 </div>
 
                 <div className="right flex flex-col justify-center px-3 lg:px-0">
                     <h1 className=" text-xl font-bold lg:text-2xl text-primary lg:font-bold lg:mb-13 " >FrontEnd Certification</h1>
                     {dataText.map((item, index) => (
-                        <div className="flex gap-4 my-4" key={index}>
+                        <div className="flex gap-4 my-4" key={index} data-aos="fade-up">
                             <img className="w-6 h-6" src={item.image} alt="" />
                             <div className="text">
                                 <p className="text-slate-500 text-small lg:text-base" >{item.text}</p>

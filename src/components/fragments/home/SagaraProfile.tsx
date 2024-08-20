@@ -31,7 +31,7 @@ const SagaraProfile = () => {
                     <div className="my-3 mx-3 lg:mx-0 flex flex-col gap-6">
 
                         {dataText.map((item, index) => (
-                            <div className="flex gap-4 " key={index}>
+                            <div className="flex gap-4 " key={index} data-aos="fade-up">
                                 <img src={item.image} alt="" />
                                 <div className="text">
                                     <h1 className=" text-small md:text-lg text-primary font-semibold" >{item.title}</h1>
@@ -42,7 +42,7 @@ const SagaraProfile = () => {
                     </div>
                 </div>
                 <div className="right flex justify-center items-center order-first lg:order-2">
-                    <img className="w-auto h-[460px]" src={manager} alt="" />
+                    <img className="w-auto h-[460px]" src={manager} alt="" data-aos="fade-up-left" />
                 </div>
             </div>
         </div>

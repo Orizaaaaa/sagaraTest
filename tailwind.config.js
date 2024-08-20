@@ -12,7 +12,9 @@ export default {
         primary: "#A51535",
         primaryblue: "#A51535",
         secondary: "#A51535",
-        black: '#1C1C1C'
+        black: '#1C1C1C',
+        customdark: '#353535',
+        customred: '#A51535',
       },
       fontSize: {
         "title-xxl": ["44px", "55px"],

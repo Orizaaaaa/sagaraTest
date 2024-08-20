@@ -67,7 +67,7 @@ const OurCertification = () => {
                         </div>
                     ))}
 
-                    <div className="flex justify-center mt-3">
+                    <div className="flex justify-center my-4">
                         <ButtonPrimary className="rounded-md" >Get Detail</ButtonPrimary>
                     </div>
                 </div>
